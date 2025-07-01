@@ -1,26 +1,30 @@
-\# Hovr\_App 🚀
+# 🏡 Hovr_App — Booking Management System (Airbnb-style)
 
+A full-fledged backend Booking Management System built with **Java & Spring Boot**, designed to manage room listings, users, and bookings — inspired by Airbnb’s core functionality.
 
+---
 
-A Java Spring Boot project for managing room inventories and services.
+## 🚀 Features
 
+- 🧾 User & Admin Management
+- 🏠 Add, Edit, Delete Room Listings
+- 📅 Room Booking & Availability Handling
+- 📂 Clean Modular Architecture (Service, DTO, Controller, Entity, etc.)
+- 🌐 RESTful API Design
+- 📄 Exception Handling & Global Response Structure
 
+---
 
-\## 🔧 Tech Stack
+## 💻 Tech Stack
 
-\- Java
+- Java
+- Spring Boot
+- Spring Data JPA
+- MySQL
+- Maven
+- Postman for API testing
 
-\- Spring Boot
-
-\- Spring Data JPA
-
-\- MySQL
-
-\- Maven
-
-
-
-\## 📁 Project Structure
+---
 
 
 
