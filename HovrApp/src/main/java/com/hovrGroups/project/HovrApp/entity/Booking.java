@@ -37,6 +37,8 @@ public class Booking {
 
     @Column(nullable = false)
     private LocalDate checkInDate;
+
+    @Column(nullable = false)
     private LocalDate checkOutDate;
 
     @CreationTimestamp

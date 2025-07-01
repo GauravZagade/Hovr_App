@@ -42,7 +42,10 @@ public class Hotel {
     @Column(nullable = false)
     private Boolean active;
 
-    @OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY)
+    @ManyToOne
+    private User owner;
+
+    @OneToMany(mappedBy = "hotel")
     private List<Room> rooms;
 
 }
