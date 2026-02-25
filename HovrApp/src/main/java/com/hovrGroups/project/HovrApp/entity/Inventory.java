@@ -45,6 +45,9 @@ public class Inventory {
     @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 0")
     private Integer bookedCount;
 
+    @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 0")
+    private Integer reservedCount;
+
     @Column(nullable = false)
     private Integer totalCount;
 
@@ -65,6 +68,5 @@ public class Inventory {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-
 
 }

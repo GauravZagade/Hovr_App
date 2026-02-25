@@ -1,0 +1,53 @@
+package com.hovrGroups.project.HovrApp.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.hovrGroups.project.HovrApp.dto.HotelDto;
+import com.hovrGroups.project.HovrApp.dto.HotelInfoDto;
+import com.hovrGroups.project.HovrApp.dto.HotelSearchRequest;
+import com.hovrGroups.project.HovrApp.entity.Inventory;
+import com.hovrGroups.project.HovrApp.service.HotelService;
+import com.hovrGroups.project.HovrApp.service.InventoryService;
+
+import lombok.RequiredArgsConstructor;
+
+
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+@RestController
+@RequestMapping("/hotels")
+@RequiredArgsConstructor
+public class HotelBrowseController {
+
+    private final InventoryService inventoryService;
+    private final HotelService hotelService;
+
+
+    @GetMapping("/search")
+    public ResponseEntity<Page<HotelDto>> searchHotels(@RequestBody HotelSearchRequest hotelSearchRequest) {
+        Page<HotelDto> page = inventoryService.searchHotels(hotelSearchRequest);
+        return ResponseEntity.ok(page);
+    }
+
+
+    @GetMapping("/{hotelId}/info")
+    public ResponseEntity<HotelInfoDto> getHotelInfo(@PathVariable Long hotelId) {
+        
+        return ResponseEntity.ok(hotelService.getHotelInfoById(hotelId));
+        
+    }
+
+
+    
+    
+    
+    
+
+}

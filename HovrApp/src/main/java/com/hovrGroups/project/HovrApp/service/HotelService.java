@@ -1,6 +1,7 @@
 package com.hovrGroups.project.HovrApp.service;
 
 import com.hovrGroups.project.HovrApp.dto.HotelDto;
+import com.hovrGroups.project.HovrApp.dto.HotelInfoDto;
 import com.hovrGroups.project.HovrApp.entity.Hotel;
 
 public interface HotelService {
@@ -13,4 +14,6 @@ public interface HotelService {
     void deleteHotelById(Long id);
 
     void activateHotel(Long hotelId);
+
+    HotelInfoDto getHotelInfoById(Long hotelId);
 }
