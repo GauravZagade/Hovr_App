@@ -12,10 +12,12 @@ import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
 
 import com.hovrGroups.project.HovrApp.dto.HotelDto;
+import com.hovrGroups.project.HovrApp.dto.HotelPriceDto;
 import com.hovrGroups.project.HovrApp.dto.HotelSearchRequest;
 import com.hovrGroups.project.HovrApp.entity.Hotel;
 import com.hovrGroups.project.HovrApp.entity.Inventory;
 import com.hovrGroups.project.HovrApp.entity.Room;
+import com.hovrGroups.project.HovrApp.repository.HotelMinPriceRepository;
 import com.hovrGroups.project.HovrApp.repository.InventoryRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,7 @@ public class InventoryServiceImpl implements InventoryService {
 
     private final InventoryRepository inventoryRepository;
     private final ModelMapper modelMapper;
+    private final HotelMinPriceRepository hotelMinPriceRepository;
 
 
     @Override
@@ -64,20 +67,17 @@ public class InventoryServiceImpl implements InventoryService {
 
 
     @Override
-    public Page<HotelDto> searchHotels(HotelSearchRequest hotelSearchRequest) {
+    public Page<HotelPriceDto> searchHotels(HotelSearchRequest hotelSearchRequest) {
 
         log.info("Searching for hotels with city: {}, start date: {}, end date: {}, rooms count: {}", hotelSearchRequest.getCity(), hotelSearchRequest.getStartDate());
         Pageable pageable = PageRequest.of(hotelSearchRequest.getPage(), hotelSearchRequest.getSize());
-
         long dateCount = 
                 ChronoUnit.DAYS.between(hotelSearchRequest.getStartDate(), hotelSearchRequest.getEndDate()) + 1;
         
-       Page<Hotel> hotelPage =  inventoryRepository.findHotelWithAvailableInventory(hotelSearchRequest.getCity(), hotelSearchRequest.getStartDate(), 
-        hotelSearchRequest.getEndDate(), hotelSearchRequest.getRoomsCount(), dateCount , pageable);
-        return hotelPage.map((element)-> modelMapper.map(element, HotelDto.class));
+
+       Page<HotelPriceDto> hotelPage =  hotelMinPriceRepository.findHotelWithAvailableInventory(hotelSearchRequest.getCity(), hotelSearchRequest.getStartDate(), 
+        hotelSearchRequest.getEndDate() , pageable);
+        return hotelPage;
     }
-
-    
-
 
 }

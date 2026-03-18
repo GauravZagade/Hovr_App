@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hovrGroups.project.HovrApp.dto.HotelDto;
 import com.hovrGroups.project.HovrApp.dto.HotelInfoDto;
+import com.hovrGroups.project.HovrApp.dto.HotelPriceDto;
 import com.hovrGroups.project.HovrApp.dto.HotelSearchRequest;
 import com.hovrGroups.project.HovrApp.entity.Inventory;
 import com.hovrGroups.project.HovrApp.service.HotelService;
@@ -31,8 +32,8 @@ public class HotelBrowseController {
 
 
     @GetMapping("/search")
-    public ResponseEntity<Page<HotelDto>> searchHotels(@RequestBody HotelSearchRequest hotelSearchRequest) {
-        Page<HotelDto> page = inventoryService.searchHotels(hotelSearchRequest);
+    public ResponseEntity<Page<HotelPriceDto>> searchHotels(@RequestBody HotelSearchRequest hotelSearchRequest) {
+        var page = inventoryService.searchHotels(hotelSearchRequest);
         return ResponseEntity.ok(page);
     }
 
